@@ -1,5 +1,3 @@
-// ConsoleApplication1.cpp : Defines the entry point for the console application.
-//
 
 #include <cstdint>
 #include <cstring>
@@ -23,7 +21,6 @@ struct Edge
 
 	Edge(size_t route_id, size_t srcnode, size_t dstnode, size_t edge_len) : id(route_id), a(srcnode), b(dstnode), len(edge_len)
 	{
-
 	}
 
 };
@@ -32,12 +29,8 @@ struct Edge
 struct Node {
 	std::vector<size_t> routes;
 
-	Node() {
-
-	}
-
-	void Push(size_t route_id) {
-		routes.push_back(route_id);
+	Node() 
+	{
 	}
 
 };
@@ -75,7 +68,7 @@ void PushEdgeToNode(std::map<size_t, Node>& nodes, size_t nid, size_t eid)
 
 	if (it != nodes.end())
 	{
-		it->second.Push(eid);
+		it->second.routes.push_back(eid);
 	}
 
 }
@@ -112,8 +105,7 @@ size_t NextNode_WebLen(const std::map<size_t, Node>& nodes, size_t nid, std::vec
 	if (passed_nodes.size() >= nodes.size()) { return 0; }
 
 	
-	//loop through all edges for current node, add them to e vector edge collection and remove them edges
-
+	//loop through all edges for current node, add them to e vector edge collection and remove them from edges
 	std::map<size_t, Node>::const_iterator it = nodes.find(nid);
 	if (it == nodes.end()) { return 0; }
 
